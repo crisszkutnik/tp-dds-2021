@@ -1,0 +1,63 @@
+{{#with publicacion}}
+    {{#if publicacion.vigente}}
+        <div class="card" style="width: 80%;">
+            <!-- Fotos -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <!-- Barritas -->
+                <div class="carousel-indicators">
+                    {{#each mascota.imagenes}}
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{@index}}"
+                                class="{{#unless @index}}active{{/unless}}" aria-current="true" aria-label="Slide {{@index}}"></button>
+                    {{/each}}
+                </div>
+                <!-- Fotos -->
+                <div class="carousel-inner">
+                    {{#each mascota.imagenes}}
+                        <div class="carousel-item{{#unless @index}} active{{/unless}}">
+                            <img
+                                    style="height: 300px; width: 100%; object-fit: cover; object-position: center;"
+                                    src="/dogImg/{{nombre}}"
+                                    class="d-block w-100"
+                            >
+                        </div>
+                    {{/each}}
+                </div>
+                <!-- Botoncitos -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <!-- Datos -->
+            <div class='card-body'>
+                <h3 class="card-title">{{mascota.nombre}}</h3>
+                <h6 class="card-subtitle mb-2 text-muted">Publicado el {{ fecha }}</h6>
+                <span>De asociación <b>{{asociacion.nombre}}</b></span>
+                <ul class="list-group list-group-flush">
+                    {{#each respuestas}}
+                        <li class="list-group-item">
+                            <b style="font-size: 0.8rem;">{{ pregunta.pregunta }}</b><br/>
+                            <span style="font-size: 0.6rem;">{{ respuesta }}</span>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    {{else}}
+        <div class="container-fluid d-flex justify-content-center align-items-center">
+            <div class="jumbotron mt-5 bg-light">
+                <div class="container">
+                    <h1 class="display-4">La publicación que intentas ver ya no se encuentra vigente.</h1>
+                    <hr class="my-4">
+                    <p class="lead">Lamentamos las molestias ocasionadas.</p>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+{{/with}}

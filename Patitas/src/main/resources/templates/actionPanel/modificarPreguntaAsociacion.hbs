@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="/css/actionPanel.css" rel="stylesheet" />
+    <link href="/css/formStyles.css" rel="stylesheet" />
+    <script src="/js/actionPanel.js"></script>
+    <title>Patitas al rescate</title>
+</head>
+
+<body>
+    {{> partials/nav this}}
+    {{> partials/operationDialog success=success error=error }}
+    <div class='d-flex w-100 justify-content-center flex-wrap'>
+        <div class='d-flex flex-column w-75 flex-wrap justify-content-around mt-4'>
+            {{> partials/tituloFormularioCondicion
+               text='Preguntas de la asociacion'
+               isLogged=isLogged
+               colourClass='form-title-orange'
+            }}
+            <div class='d-flex flex-column admin-floating-panel' style="background: white">
+                <h2>Agregar pregunta de asociacion</h2>
+                <form method='post' id='admin-form' action='/actionPanel/voluntario/preguntaAsociacionPanel/addPreguntaAsociacion'>
+                    <div class="form-floating mb-3">
+                        <input name="pregunta" type="text" class="form-control" id="floatingInput" placeholder="Pregunta" />
+                        <label for="floatingInput">Pregunta</label>
+                    </div>
+                    <div id='responsesGeneral'>
+                    </div>
+                    <div class='d-flex'>
+                        <button class='btn btn-primary' id='posibilidad-general-btn'>Agregar respuesta</button>
+                    </div>
+                    <input type='submit' class='btn btn-primary mt-2' />
+                </form>
+            </div>
+            <div class="d-flex flex-wrap flex-column mt-4">
+                <h2 style="border-bottom: 2px solid var(--bs-primary); padding-bottom: .8rem">Preguntas existenes</h2>
+                <div class='d-flex flex-wrap'>
+                {{#each pregunta}}
+                <div class="d-flex shadow rounded p-3 mx-3 my-3" style="border: 1px solid rgba(0,0,0,0.1)">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex">
+                            <b>Pregunta:</b>
+                            <p class="ms-2">{{pregunta}}</p>
+                        </div>
+                        {{#if respuestasPosibles}}
+                        <div class="d-flex flex-column">
+                            <b>Respuestas</b>
+                            <ul>
+                            {{#each respuestasPosibles}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                            </ul>
+                        </div>
+                        {{/if}}
+                    </div>
+                    <form class="ms-3" method="post" action="/actionPanel/voluntario/preguntaAsociacionPanel/removerPreguntaAsociacion">
+                        <input name="idPregunta" value="{{id}}" style="display: none" />
+                        <input type="submit" class="btn btn-danger" value="Eliminar" />
+                    </form>
+                </div>
+                {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

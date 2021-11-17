@@ -1,0 +1,33 @@
+<div class='d-flex flex-column admin-floating-panel w-50'>
+    <h2>Usuarios voluntarios</h2>
+    <div class='d-flex'>
+        <form class="w-50" method="post" action="/actionPanel/voluntario/addVoluntario">
+            <h4>Agregar usuario</h4>
+            <div class="form-floating mb-3">
+                <input name="user" type="text" class="form-control" id="floatingInput"
+                    placeholder="Ingresar usuario">
+                <label for="floatingInput">Ingresar usuario</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input name="confUser" type="text" class="form-control" id="floatingInput"
+                    placeholder="Confirmar usuario">
+                <label for="floatingInput">Confirmar usuario</label>
+            </div>
+            <input type='submit' class='btn btn-primary' value="Confirmar" />
+        </form>
+        <form class='w-50' method="post" action="/actionPanel/voluntario/removeVoluntario">
+            <h4>Remover usuario</h4>
+            <div class="form-floating mb-3">
+                <input name="user" type="text" class="form-control" id="floatingInput"
+                    placeholder="Ingresar usuario">
+                <label for="floatingInput">Ingresar usuario</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input name="confUser" type="text" class="form-control" id="floatingInput"
+                    placeholder="Confirmar usuario">
+                <label for="floatingInput">Confirmar usuario</label>
+            </div>
+            <input type='submit' class='btn btn-primary' value="Confirmar" />
+        </form>
+    </div>
+</div>

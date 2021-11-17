@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Patitas al rescate</title>
+
+    <script src="https://kit.fontawesome.com/0d6d078f29.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+{{> partials/nav.hbs this}}
+
+<div class="container">
+    <div class='container-fluid p-5'>
+        <div class="row">
+            {{#if isVoluntario}}
+                {{>partials/navCard.hbs
+                        imgpath="/img/home/lost-dog.svg"
+                        title="Publicaciones sin aprobar"
+                        text="Todas las mascotas encontradas con o sin chapita, esperando a ser aprobadas."
+                        btnhref="/encontreMascota/aprobarPublicaciones/"
+                        btnval="Aprobar publicaciones"
+                }}
+            {{/if}}
+            {{>partials/navCard.hbs
+                imgpath="/img/home/qr-card.svg"
+                title="¿Tiene chapita?"
+                text="Si encontaste una mascota con chapita, ¡buenas noticias! Podemos contactar a su dueño, tan solo tenes que escanear el QR en la chapita."
+            }}
+            {{>partials/navCard.hbs
+                imgpath="/img/home/girl-with-dog.svg"
+                title="No tiene chapita"
+                text="Registrá al animal sin chapita para que pueda conseguir un hogar"
+                btnhref="/encontreMascota/sinChapita/"
+                btnval="¡Quiero un hogar!"
+            }}
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

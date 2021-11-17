@@ -1,0 +1,12 @@
+body > div > div {
+    width: 90%;
+}
+
+.carousel.slide {
+    background: rgba(var(--bs-dark-rgb), .5);
+    height: 18rem;
+}
+
+.card {
+    margin-top: 2rem;
+}

@@ -1,0 +1,25 @@
+.title-container {
+    background-image: url('../img/home/perro.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.title-container > div {
+    height: 50rem;
+}
+
+.title-container > div > h1 {
+    font-size: 5rem;
+}
+
+.card {
+    transition: all 0.25s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.alert {
+    margin-bottom: 0 !important; /* Reemplazar CSS de Bootstrap */
+}

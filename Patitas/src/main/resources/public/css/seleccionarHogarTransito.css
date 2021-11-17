@@ -1,0 +1,8 @@
+#card-container .card {
+    width: 18rem !important;
+}
+
+.card-map {
+    width: 100%;
+    height: 400px;
+}

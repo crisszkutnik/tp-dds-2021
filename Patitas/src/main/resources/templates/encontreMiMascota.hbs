@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Patitas al rescate</title>
+    <script src="/js/defaultForm.js"></script>
+    <link href="/css/formStyles.css" rel="stylesheet" />
+</head>
+
+<body>
+    {{> partials/nav.hbs this}}
+    <div class="d-flex">
+        <div class="d-flex w-50 bg-dark vh-100">
+            <div
+                class="mt-3 d-flex flex-column w-50 position-fixed justify-content-center align-items-center text-white">
+                <h1>¡Encontraste a tu mascota!</h1>
+                <div class='w-75'>
+                    <div id="imagenesMascota" class="carousel slide my-3" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {{#each publicacion.fotos}}
+                            <div class="carousel-item {{#unless @index}}active{{/unless}}">
+                                <img src="/dogImg/{{nombre}}" class="d-block w-100" alt="Pet photo">
+                            </div>
+                            {{/each}}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#imagenesMascota"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#imagenesMascota"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="text-white d-flex flex-column w-75">
+                        <h2>Informacion</h2>
+                        <hr />
+                        <h3>Descripcion</h3>
+                        <p>{{publicacion.descripcion}}</p>
+                        <br />
+                        <h3>Nombre del rescatista</h3>
+                        <p>{{publicacion.rescatista.nombre}}
+                            {{#if publicacion.hogar}}
+                            <br />
+                        <h3>Hogar en el que esta alojado</h3>
+                        <p>{{publicacion.hogar.nombre}}</p>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex w-50 flex-column">
+            <form class='form-register' method='post' action='/mascotasPerdidas/encontreMiMascota/register'>
+                <div class='form-main-container-half'>
+                    {{#unless isLogged}}
+                    <div class='form-title form-title-green'>
+                        <div>
+                            <span>1</span>
+                            <h1>Datos del dueño</h1>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class='d-flex w-100 flex-wrap alt-form-container justify-content-between'>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="name" class="form-control" id="floatingName" placeholder="Nombre">
+                            <label for="floatingName">Nombre</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="surname" class="form-control" id="floatingApellido"
+                                placeholder="Apellido">
+                            <label for="floatingApellido">Apellido</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" name="cuil" class="form-control" id="floatingCUIL" placeholder="CUIL">
+                            <label for="floatingCUIL">CUIL</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="btn btn-outline-secondary dropdown-toggle" name="tipoDoc">
+                                <option value="DNI" selected>DNI</option>
+                                <option value="Pasaporte">Pasaporte</option>
+                                <option value="Cedula">Cedula</option>
+                                <option value="Libreta">Libreta</option>
+                            </select>
+                            <input type="number" class="form-control" name="doc"
+                                aria-label="Text input with dropdown button">
+                        </div>
+                    </div>
+                    {{/unless}}
+                    {{> partials/tituloFormularioCondicion.hbs
+                        text="Datos de contacto"
+                        isLogged=isLogged
+                        loggedVal=1
+                        notLoggedVal=2
+                        colourClass='form-title-blue'
+                    }}
+                    <div id="contact-section-bootstrap" class="w-100">
+                    </div>
+                    <button type='button' id='add-contact-bootstrap' class='btn btn-primary'>Agregar contacto</button>
+                    <input type='number' value={{publicacion.id}} name='idMascotaPerdida' style='display: none' />
+                    <input type='submit' class='btn btn-primary mt-3' value="Enviar" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

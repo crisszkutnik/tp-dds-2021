@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="/css/formStyles.css" rel="stylesheet" />
+    <link href="/css/adminPanel.css" rel="stylesheet" />
+    <title>Patitas al rescate</title>
+    <script src="/js/defaultForm.js"></script>
+</head>
+
+<body>
+    {{> partials/nav.hbs this}}
+
+    {{#if loginError}}
+    <div class="alert alert-danger" role="alert">
+        {{#if errorMsgs}}
+            {{#each errorMsgs}}
+                <span>{{this}}</span><br/>
+            {{/each}}
+        {{else}}
+                <span>Debes iniciar sesión para completar la acción.</span><br/>
+        {{/if}}
+    </div>
+    {{/if}}
+    <div class="container align-items-center">
+        <div class="row">
+            <div class="col-sm d-flex align-items-center mt-4">
+                <div class="card text-white bg-secondary" style="width: 30rem;">
+                    <div class="card-header">Ingresá a la plataforma</div>
+                    <div class="card-body">
+                        <form action="/authapi/notlogged/login{{#if redirect}}?redirect={{redirect}}{{/if}}" method="post">
+                            <div class="form-group">
+                                <input class="form-control mb-3" name="username" type="text" required
+                                    placeholder="Nombre de usuario" />
+                                <input class="form-control mb-3" name="password" type="password" required
+                                    placeholder="Contraseña" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-light mt-4" style="width: 30rem;">
+                    <div class="card-header">¿No tenés cuenta? ¡Registrate!</div>
+                    <div class="card-body">
+                        <form action="/authapi/notlogged/register{{#if redirect}}?redirect={{redirect}}{{/if}}" method="post">
+                            <div class="form-group">
+                                <label class="mb-2">Datos de usuario</label>
+                                <input class="form-control mb-3" name="username" type="text" placeholder="Usuario" required />
+                                <input class="form-control mb-3" name="password" type="password" required
+                                    placeholder="Contraseña" />
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-2">Datos personales</label>
+                                <input class="form-control mb-3" name="name" type="text" placeholder="Nombre" required />
+                                <input class="form-control mb-3" name="surname" type="text" placeholder="Apellido" required />
+                                <input class="form-control mb-3" name="cuil" type="number" placeholder="CUIL" required />
+                                <div class="input-group mb-3">
+                                    <select class="btn btn-outline-secondary dropdown-toggle" name="tipoDoc" required>
+                                        <option value="DNI" selected>DNI</option>
+                                        <option value="Pasaporte">Pasaporte</option>
+                                        <option value="Cedula">Cedula</option>
+                                        <option value="Libreta">Libreta</option>
+                                    </select>
+                                    <input type="number" class="form-control" name="doc" required
+                                        aria-label="Text input with dropdown button">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100">Registrarse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+#adoptar-imagen {
+    background-image: url('../img/home/perro.jpg');
+    height: 100vh;
+}
+
+#adoptar-imagen p {
+    text-align: justify;
+}
+
+#adoptar-imagen hr {
+    width: 90%;
+    height: 2px;
+    display: block;
+    background: white;
+    opacity: .8;
+}

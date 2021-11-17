@@ -1,0 +1,64 @@
+<div class='d-flex flex-column admin-floating-panel'>
+    <h2>Parámetros generales</h2>
+    <form method="post" action="/actionPanel/admin/changeImgParams">
+        <h4>Dimensiones imagenes</h4>
+        <div class="form-floating mb-3">
+            <input name="alto" type="text" class="form-control" id="floatingInput" placeholder="Alto"
+                value="{{altoImg}}">
+            <label for="floatingInput">Alto</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input name="ancho" type="text" class="form-control" id="floatingInput" placeholder="Ancho"
+                value="{{anchoImg}}">
+            <label for="floatingInput">Ancho</label>
+        </div>
+        <input type='submit' class='btn btn-primary' value="Actualizar" />
+    </form>
+</div>
+<div class='d-flex flex-column admin-floating-panel w-50'>
+    <h2>Usuarios administradores</h2>
+    <div class='d-flex'>
+        <form class="w-50" method="post" action="/actionPanel/admin/addAdmin">
+            <h4>Agregar usuario</h4>
+            <div class="form-floating mb-3">
+                <input name="user" type="text" class="form-control" id="floatingInput"
+                    placeholder="Ingresar usuario">
+                <label for="floatingInput">Ingresar usuario</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input name="confUser" type="text" class="form-control" id="floatingInput"
+                    placeholder="Confirmar usuario">
+                <label for="floatingInput">Confirmar usuario</label>
+            </div>
+            <input type='submit' class='btn btn-primary' value="Confirmar" />
+        </form>
+        <form class='w-50 mx-3' method="post" action="/actionPanel/admin/removeAdmin">
+            <h4>Remover usuario</h4>
+            <div class="form-floating mb-3">
+                <input name="user" type="text" class="form-control" id="floatingInput"
+                    placeholder="Ingresar usuario">
+                <label for="floatingInput">Ingresar usuario</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input name="confUser" type="text" class="form-control" id="floatingInput"
+                    placeholder="Confirmar usuario">
+                <label for="floatingInput">Confirmar usuario</label>
+            </div>
+            <input type='submit' class='btn btn-primary' value="Confirmar" />
+        </form>
+    </div>
+</div>
+<div class='d-flex flex-column admin-floating-panel'>
+    <h2>Agregar asociacion</h2>
+    <form method="post" action="/actionPanel/admin/addAsociacion">
+        <div class="form-floating mb-3">
+            <input name="nombreAsoc" type="text" class="form-control" id="floatingInput" placeholder="Nombre" />
+            <label for="floatingInput">Nombre</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input name="user" type="text" class="form-control" id="floatingInput" placeholder="Voluntario" />
+            <label for="floatingInput">Voluntario</label>
+        </div>
+        <input type='submit' class='btn btn-primary' value="Agregar" />
+    </form>
+</div>

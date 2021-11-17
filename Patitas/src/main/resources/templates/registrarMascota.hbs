@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="/css/quieroAdoptar.css" rel="stylesheet" />
+    <link href="/css/formStyles.css" rel="stylesheet" />
+    <title>Patitas al rescate</title>
+    <script src="/js/defaultForm.js"></script>
+    <style>
+    .alert {
+        margin-bottom: 0 !important;
+    }
+    </style>
+</head>
+
+<body>
+    {{> partials/nav.hbs this}}
+    {{> partials/operationDialog.hbs success=success error=error}}
+    <div class='d-flex'>
+        <div class='d-flex w-50 bg-dark'>
+            <div class='d-flex w-50 h-100 position-fixed' id='adoptar-imagen'>
+                <div
+                    class='d-flex w-100 h-100 bg-dark bg-opacity-75 text-white justify-content-center align-items-center'>
+                    <div class='d-flex w-50 flex-column align-items-center'>
+                        <h1>Registra tu mascota</h1>
+                        <hr />
+                        <p>
+                            Completá el formulario y registrá tu mascota en la plataforma. De esta manera podremos
+                            avisarte si alguien la encuentra o podemos facilitarte el proceso para encontrarle una
+                            familia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='d-flex w-50'>
+            <form class='form-register' method='post' action='/registrarMascota/addMascota'
+                enctype='multipart/form-data'>
+                <div class='form-main-container-half'>
+                    {{#unless isLogged}}
+                    <div class='form-title form-title-green'>
+                        <div>
+                            <span>1</span>
+                            <h1>Datos del dueño</h1>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class='d-flex w-100 flex-wrap alt-form-container justify-content-between'>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="name" class="form-control" id="floatingName" placeholder="Nombre" required>
+                            <label for="floatingName">Nombre</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="surname" class="form-control" id="floatingApellido" required
+                                placeholder="Apellido">
+                            <label for="floatingApellido">Apellido</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" name="cuil" class="form-control" id="floatingCUIL" placeholder="CUIL" required>
+                            <label for="floatingCUIL">CUIL</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="btn btn-outline-secondary dropdown-toggle" name="tipoDoc" required>
+                                <option value="DNI" selected>DNI</option>
+                                <option value="Pasaporte">Pasaporte</option>
+                                <option value="Cedula">Cedula</option>
+                                <option value="Libreta">Libreta</option>
+                            </select>
+                            <input type="number" class="form-control" name="doc"
+                                aria-label="Text input with dropdown button" required>
+                        </div>
+                    </div>
+                    {{/unless}}
+                    {{> partials/tituloFormularioCondicion.hbs
+                        text='Datos de la mascota'
+                        isLogged=isLogged
+                        loggedVal=1
+                        notLoggedVal=2
+                        colourClass='form-title-blue'
+                    }}
+                    <div class='d-flex w-100 flex-wrap alt-form-container justify-content-between'>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="Nombre" class="form-control" id="floatingName"
+                                placeholder="Nombre" required>
+                            <label for="floatingName">Nombre</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="Apodo" class="form-control" id="floatingApodo" placeholder="Apodo" required>
+                            <label for="floatingApodo">Apodo</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" name="Tipo" id="floatingTipo" required
+                                aria-label="Floating label select example">
+                                <option disabled selected>Seleccione uno</option>
+                                <option value="PERRO">Perro</option>
+                                <option value="GATO">Gato</option>
+                            </select>
+                            <label for="floatingTipo">Tipo</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select name="Sexo" class="form-select" id="floatingSexo" required
+                                aria-label="Floating label select example">
+                                <option disabled selected>Seleccione uno</option>
+                                <option value="MACHO">Macho</option>
+                                <option value="HEMBRA">Hembra</option>
+                            </select>
+                            <label for="floatingSexo">Sexo</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select name="Tamanio" class="form-select" id="floatingTamanio" required
+                                aria-label="Floating label select example">
+                                <option disabled selected>Seleccione uno</option>
+                                <option value="CHICA">Chica</option>
+                                <option value="MEDIANA">Mediana</option>
+                                <option value="GRANDE">Grande</option>
+                            </select>
+                            <label for="floatingTamanio">Tamaño</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="date" name="Nacimiento" class="form-control" id="floatingNacimiento" required
+                                placeholder="Fecha de nacimiento">
+                            <label for="floatingNacimiento">Fecha de nacimiento</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="Apodo" class="form-control" id="floatingColor" placeholder="Color" required />
+                            <label for="floatingColor">Color</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select name="Castrado" class="form-select" id="floatingCastrado" required
+                                aria-label="Floating label select example">
+                                <option disabled selected>Seleccione una</option>
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
+                            </select>
+                            <label for="floatingCastrado">¿Está castrada?</label>
+                        </div>
+                        <div class="form-floating mb-3 full-width-alt-form">
+                            <textarea name="Descripcion" class="form-control" placeholder="Descripcion" required
+                                id="floatingDescripcion"></textarea>
+                            <label for="floatingDescripcion">Descripción</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFileSm" class="form-label">Imagenes</label>
+                            <input name="mascotaImg1" class="form-control form-control-sm" id="formFileSm" type="file">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFileSm" class="form-label">Imagenes</label>
+                            <input name="mascotaImg2" class="form-control form-control-sm" id="formFileSm" type="file">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFileSm" class="form-label">Imagenes</label>
+                            <input name="mascotaImg3" class="form-control form-control-sm" id="formFileSm" type="file">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFileSm" class="form-label">Imagenes</label>
+                            <input name="mascotaImg4" class="form-control form-control-sm" id="formFileSm" type="file">
+                        </div>
+                    </div>
+                    {{> partials/tituloFormularioCondicion.hbs
+                        text='Datos de contacto'
+                        isLogged=isLogged
+                        loggedVal=2
+                        notLoggedVal=3
+                        colourClass='form-title-orange'
+                    }}
+                    <div id="contact-section-bootstrap" class="w-100">
+                    </div>
+                    <button type='button' id='add-contact-bootstrap' class='btn btn-primary'>Agregar contacto</button>
+                    <input type='submit' class='btn btn-primary my-5' value="Registrar" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

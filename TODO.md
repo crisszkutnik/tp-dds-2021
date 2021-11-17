@@ -1,0 +1,29 @@
+- [X] Terminar implementacion de PublicacionDeseoAdoptar
+- [X] Agregar preferencias y condiciones a PublicacionDeseoAdoptar
+- [X] Crear clase para correr tareas de forma rutinaria
+- [ ] Crear clase para generar recomendaciones de adopcion
+- [X] Crear archivo de configuracion global del sistema
+- [X] Una vez implementado PublicacionDeseoAdoptar, crear tests y actualizar el controller
+- [X] Seria ideal cambiar la forma en la que se registra si un usuario es ADMIN o VOLUNTARIO. 
+Que pasa si un usuario que es ADMIN y VOLUNTARIO deja de ser ADMIN, como nos damos cuenta?
+- [X] Implementar posibilidad de registrar una Mascota sin tener un Usuario
+- [X] Implementar mensajes de confirmacion/error de las operaciones
+- [X] Implementar tamanio de mascotas en formulario
+- [X] Mejorar el tema de como se crean las ContactCard. Implementar un mejor algoritmo.
+- [X] Agregar todos los botones del front para acceder a todas las rutas
+- [X] Implementar posibilidad de adoptar Mascotas
+- [X] Implementar vista para ver todas las publicaciones aprobadas de MascotaPerdida
+- [X] Ver qué hacemos con la vista de `/encontreMascota/conChapita`
+- [X] Posibilidad de actualizar metodos de contacto de mascotas y publicaciones
+- [ ] Hacer mejores chequeos de inputs tanto en el front como en el back
+- [ ] Poder agregar/modificar imagenes
+- [ ] Verificar que esten implementadas todas las funcionalidades del Admin y el Voluntario
+- [ ] Actualizar diagramas de clase
+- [ ] Testear los metodos de notificacion
+- [X] Verificar que una persona no pueda adoptar una Mascota que es suya
+- [-] Revisar el cascade de operaciones. Por ejemplo, verificar que se eliminen las AdopcionPublicacionOfertaAdopcion ante la eliminacion de la PublicacionOfertaAdopcion
+- [X] Resolver comentario en ControllerMascota:generarQR() (// TODO: Reemplazar esto por URL real)
+- [X] Como me comunico con la PublicacionDeseoAdoptar?
+- [X] Vista para ver el QR y enviarlo por mail. Arreglar QR
+- [X] Implementar vista para manejar preguntas de Asociacion y Generales
+

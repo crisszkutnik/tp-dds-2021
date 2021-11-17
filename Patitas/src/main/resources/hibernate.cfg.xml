@@ -1,0 +1,45 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--
+        <property name="connection.url">jdbc:mysql://localhost:3306/dds</property>
+        <property name="connection.username">admin</property>
+        <property name="connection.password">navarro</property>-->
+
+        <property name="connection.url">jdbc:mysql://w3epjhex7h2ccjxx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qg40nz1jczhegs92</property>
+        <property name="connection.username">d50jgbvv1hezju51</property>
+        <property name="connection.password">cq6ti265hmqr2q6q</property>
+
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.pool_size">1000</property>
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.use_sql_comments">true</property>
+        <property name="hibernate.connection.isolation">4</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <mapping class="domain.PersistenteID" />
+        <mapping class="domain.AdopcionPublicacionOfertaAdopcion.AdopcionPublicacionOfertaAdopcion" />
+        <mapping class="domain.Asociacion.Asociacion" />
+        <mapping class="domain.ContactCard.ContactCard" />
+        <mapping class="domain.ContactCard.ContactPerClass.ContactCardMascota" />
+        <mapping class="domain.ContactCard.ContactPerClass.ContactCardMascotaPerdida" />
+        <mapping class="domain.ContactCard.ContactPerClass.ContactCardAdopcionPublicacionOfertaAdopcion" />
+        <mapping class="domain.ContactCard.ContactPerClass.ContactCardMascotaEncontrada" />
+        <mapping class="domain.ContactCard.ContactPerClass.ContactCardPublicacionDeseoAdoptar" />
+        <mapping class="domain.Hogares.Hogar" />
+        <mapping class="domain.Imagen.Imagen" />
+        <mapping class="domain.Mascota.Mascota" />
+        <mapping class="domain.MascotaEncontrada.MascotaEncontrada" />
+        <mapping class="domain.MascotaPerdida.MascotaPerdida" />
+        <mapping class="domain.Preguntas.Pregunta" />
+        <mapping class="domain.Preguntas.Respuesta" />
+        <mapping class="domain.PublicacionDeseoAdoptar.PublicacionDeseoAdoptar" />
+        <mapping class="domain.PublicacionDeseoAdoptar.Preferencias.Preferencias" />
+        <mapping class="domain.PublicacionOfertaAdopcion.PublicacionOfertaAdopcion" />
+        <mapping class="domain.Usuario.Usuario" />
+        <mapping class="domain.Usuario.Persona" />
+    </session-factory>
+</hibernate-configuration>

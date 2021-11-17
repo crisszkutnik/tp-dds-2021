@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="/css/formStyles.css" rel="stylesheet" />
+    <link href="/css/conChapita.css" rel="stylesheet" />
+    <title>Patitas al rescate</title>
+
+    <!-- js for forms -->
+    <script src="/js/defaultForm.js"></script>
+
+    <script src="https://kit.fontawesome.com/0d6d078f29.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {{> partials/nav this}}
+    <div class="d-flex vh-100">
+        <div class='bg-dark d-flex w-50 flex-column align-items-center'>
+            <div id="fixed-container" class='d-flex flex-column text-white position-fixed mt-4'>
+                <div id="imagenesMascota" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {{#each mascota.imagenes}}
+                        <div class="carousel-item {{#unless @index}}active{{/unless}}">
+                            <img src="/dogImg/{{nombre}}" class="d-block w-100" alt="Dog 1">
+                        </div>
+                        {{/each}}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#imagenesMascota"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#imagenesMascota"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <div>
+                    <h1 class='mt-2'>{{mascota.nombre}}</h1>
+                    <h3>{{mascota.apodo}}</h3>
+                </div>
+                <div class='d-flex flex-column w-100'>
+                    <p>{{mascota.tipo}}</p>
+                    <p>{{mascota.sexo}}</p>
+                </div>
+            </div>
+        </div>
+        <div class='d-flex w-50'>
+            <form class='form-register' method='post' enctype='multipart/form-data' action='/misMascotas/actualizarDatos/actualizarMascota/{{mascota.id}}/actualizar' >
+                <div class='form-main-container-half'>
+                {{> partials/tituloFormularioCondicion
+                    text='Datos de contacto'
+                    isLogged=isLogged
+                    colourClass='form-title-orange'
+                }}
+                    <div id="modify-contact-section-bootstrap" class="w-100">
+                        {{#each mascota.contacto}}
+                            <div class='d-flex w-100 flex-wrap alt-form-container justify-content-between contact-card-container'>
+                            {{#with contact}}
+                                <hr class='my-3' style="width: 95%; height: 2px; background: black;" />
+                                <input type="number" name="idContactCard" value={{id}} style="display: none" />
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="nombreContacto" class="form-control" id="floatingName"
+                                        placeholder="Nombre" required value="{{nombre}}">
+                                    <label for="floatingName">Nombre</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="apellidoContacto" class="form-control" id="floatingName"
+                                        placeholder="Apellido" required value="{{apellido}}">
+                                    <label for="floatingName">Apellido</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="tel" name="telefonoContacto" class="form-control" id="floatingName"
+                                        placeholder="Teléfono" required value="{{telefono}}">
+                                    <label for="floatingName">Teléfono</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" name="emailContacto" class="form-control" id="floatingName"
+                                        placeholder="Correo electrónico" required value="{{email}}">
+                                    <label for="floatingName">Correo electrónico</label>
+                                </div>
+                                <div class='d-flex mb-3'>
+                                    {{{getContactListHTML contactList}}}
+                                </div>
+                                <div>
+                                    <button type='button' class='contact-remove-btn btn btn-danger'>Eliminar</button>
+                                </div>
+                            {{/with}}
+                            </div>
+                        {{/each}}
+                    </div>
+                    <button type='button' id='add-contact-bootstrap' class='btn btn-primary my-3'>Agregar contacto</button>
+                    <input type='submit' class='btn btn-primary my-3' value="Actualizar" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

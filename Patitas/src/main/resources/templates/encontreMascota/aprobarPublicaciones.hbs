@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="../../css/desdeRescatista.css" rel="stylesheet" />
+    <title>Patitas al rescate</title>
+
+    <script src="https://kit.fontawesome.com/0d6d078f29.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {{> partials/nav.hbs this}}
+    <div class='d-flex w-100 justify-content-center align-items-center flex-column'>
+        <div class='mt-3 d-flex flex-column w-75'>
+            <h2>Mascotas perdidas pendientes de aprobación</h2>
+            <hr />
+        </div>
+        <div class='d-flex flex-wrap justify-content-around'>
+            <!-- Card -->
+            {{#if pendientes}}
+                {{#each pendientes}}
+                <div class='f-flex justify-content-center'>
+                    <div class='card shadow-lg' style='width: 18rem;'>
+                        <!-- Carousel -->
+                        <div id="carousel{{@index}}" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                {{#each fotos}}
+                                <div class="carousel-item {{#unless @index}}active{{/unless}}">
+                                    <img src="/dogImg/{{nombre}}" class="d-block w-100"  style='height: 18.5rem'>
+                                </div>
+                                {{/each}}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{@index}}"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel{{@index}}"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <!-- Body -->
+                        <div class='card-body d-flex flex-column justify-content-between'>
+                            <p class='card-text'>
+                                {{descripcion}}
+                            </p>
+                            <form method="post" action="/encontreMascota/aprobarPublicaciones/{{id}}">
+                                <input type='submit' class='btn btn-primary' value='Aceptar' />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            <!-- End of card -->
+            {{else}}
+                <h2>¡Enhorabuena! No hay publicaciones en espera.</h2>
+            {{/if}}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

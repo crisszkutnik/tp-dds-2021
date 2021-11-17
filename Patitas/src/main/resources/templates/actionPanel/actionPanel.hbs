@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="/css/actionPanel.css" rel="stylesheet" />
+    <script src="/js/actionPanel.js"></script>
+    <title>Patitas al rescate</title>
+</head>
+
+<body>
+    {{> partials/nav.hbs this}}
+    {{> partials/operationDialog.hbs success=success error=error }}
+    <div class='d-flex w-100 justify-content-center flex-wrap'>
+        <div class='d-flex w-75 flex-wrap justify-content-around mt-4'>
+         {{#if isAdmin}}
+            {{> actionPanel/adminPanel.hbs }}
+         {{/if}}
+         {{#if isVoluntario}}
+            {{> actionPanel/voluntarioPanel.hbs }}
+         {{/if}}
+            <div class='d-flex flex-column admin-floating-panel'>
+                <h2>Preguntas</h2>
+                {{#if isAdmin}}
+                <a class='btn btn-primary mb-2' href="/actionPanel/admin/preguntaGeneralPanel">Modificar preguntas generales</a>
+                {{/if}}
+                {{#if isVoluntario}}
+                <a class='btn btn-primary' href="/actionPanel/voluntario/preguntaAsociacionPanel">Modificar preguntas de asociacion</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

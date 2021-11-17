@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Patitas al rescate</title>
+    <link href="/css/pageDialog.css" rel="stylesheet" type="text/css" />
+    <link href="/css/formStyles.css" rel="stylesheet" />
+</head>
+
+<body>
+    {{> partials/nav.hbs this}}
+
+    <div class="w-100 d-flex justify-content-center align-items-center">
+        <div class="w-75 d-flex flex-column justify-content-center align-items-center mt-4">
+            <div class="w-50">
+            {{#with Mascota}}
+                <h1>Dar en adopcion a {{nombre}}</h1>
+                <div id="imagenesMascota" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" class="rounded-3">
+                        {{#each Imagenes}}
+                        <div class="carousel-item {{#unless @index}}active{{/unless}}">
+                            <img src={{this}} class="d-block w-100" alt="Pet">
+                        </div>
+                        {{/each}}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#imagenesMascota"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#imagenesMascota"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            {{/with}}
+            </div>
+            {{> partials/tituloFormularioCondicion.hbs
+                text='Seleccione una asociacion'
+                isLogged=isLogged
+                loggedVal=1
+                notLoggedVal=1
+                colourClass='form-title-red'
+            }}
+            <div class="w-75">
+                <form action="/misMascotas/darEnAdopcion" class="d-flex flex-column">
+                    <div class="form-floating mb-3">
+                        <input type="number" name="idMascota" value="{{Mascota.id}}" style="display: none" />
+                        <select class="form-select" name="asociacionSeleccionada" id="floatingAsociacion"
+                            onchange="this.form.submit()"
+                            aria-label="Floating label select example">
+                            <option disabled selected>Seleccione una</option>
+                            {{#each Asociaciones}}
+                            <option value="{{nombre}}">{{nombre}}</option>
+                            {{/each}}
+                        </select>
+                        <label for="floatingAsociacion">Asociacion</label>
+                    </div>
+                </form>
+            </div>
+            {{#if asociacionSeleccionada}}
+                {{> partials/tituloFormularioCondicion.hbs
+                    text='Responda las preguntas'
+                    isLogged=isLogged
+                    loggedVal=2
+                    notLoggedVal=2
+                    colourClass='form-title-green'
+                }}
+                <div class="w-75 mb-4">
+                    <h3>Asociacion "{{asociacionSeleccionada.nombre}}"</h3>
+                    <hr />
+                    <form method="post" action="/misMascotas/darEnAdopcion/add">
+                        <div style="display: none">
+                            <input type="number" name="idAsociacion" value={{asociacionSeleccionada.id}} />
+                            <input type="number" name="idMascota" value="{{Mascota.id}}" />
+                        </div>
+                        {{#each preguntas}}
+                            {{#if respuestasPosibles}}
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" name="rta{{id}}" id="floating"
+                                        aria-label="Floating label select example">
+                                        <option disabled selected>Seleccione uno</option>
+                                    {{#each respuestasPosibles}}
+                                        <option value="{{this}}">{{this}}</option>
+                                    {{/each}}
+                                    </select>
+                                    <label for="floating">{{pregunta}}</label>
+                                </div>
+                            {{else}}
+                                <div class="mb-3">
+                                  <label for="exampleFormControlTextarea1" class="form-label">{{pregunta}}</label>
+                                  <textarea class="form-control" name="rta{{id}}" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                            {{/if}}
+                        {{/each}}
+                        <input type='submit' class='btn btn-primary' value="Enviar" />
+                    </form>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

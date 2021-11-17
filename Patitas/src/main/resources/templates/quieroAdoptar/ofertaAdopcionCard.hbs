@@ -1,0 +1,22 @@
+<div class="card m-2" style="width: 40%;">
+    <!-- Imagen -->
+    {{#if imgsrc}}
+        <img class="card-img-top" src="/dogImg/{{imgsrc}}" alt="Foto publicacion">
+    {{else}}
+        <img class="card-img-top" src="/dogImg/noimg.jpg" alt="Foto publicacion">
+    {{/if}}
+
+    <div class="card-body">
+        <h5 class="card-title">{{ nombre }} ({{ apodo }})</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Publicado el {{ fecha }}</h6>
+        <ul class="list-group list-group-flush">
+            {{#each respuestas}}
+                <li class="list-group-item">
+                    <b style="font-size: 0.8rem;">{{ pregunta.pregunta }}</b><br/>
+                    <span style="font-size: 0.6rem;">{{ respuesta }}</span>
+                </li>
+            {{/each}}
+        </ul>
+        <a href="/ofertasAdopcion/{{ id }}" class="btn btn-primary btn-large w-100">Ver publicación</a>
+    </div>
+</div>

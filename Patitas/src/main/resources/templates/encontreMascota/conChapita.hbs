@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="/css/formStyles.css" rel="stylesheet" />
+    <link href="/css/conChapita.css" rel="stylesheet" />
+    <title>Patitas al rescate</title>
+
+    <!-- js for forms -->
+    <script src="/js/defaultForm.js"></script>
+
+    <script src="https://kit.fontawesome.com/0d6d078f29.js" crossorigin="anonymous"></script>
+
+    <!-- js for location picker -->
+
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Jrp9PtHe0WapppUzxbIpMDWMAcV3qE4"></script>
+    <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+</head>
+
+<body>
+    {{> partials/nav.hbs this}}
+    <div class="d-flex">
+        <div class='bg-dark d-flex w-50 flex-column align-items-center'>
+            <div id="fixed-container" class='d-flex flex-column text-white position-fixed mt-4'>
+                <h1>¡Encontraste a esta mascota!</h1>
+                <div id="imagenesMascota" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src={{firstImage}} class="d-block w-100" alt="Dog 1">
+                        </div>
+                        {{#each imgs}}
+                        <div class="carousel-item">
+                            <img src={{this}} class="d-block w-100" alt="Dog 1">
+                        </div>
+                        {{/each}}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#imagenesMascota"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#imagenesMascota"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <div>
+                    <h1 class='mt-2'>{{nombreMascota}}</h1>
+                    <h3>{{apodoMascota}}</h3>
+                </div>
+                <div class='d-flex flex-column w-100'>
+                    <p>{{tipoMascota}}</p>
+                    <p>{{sexoMascota}}</p>
+                </div>
+                <div class='d-flex flex-column w-100 mt-4'>
+                    <h4>Dueño</h4>
+                    <p>{{nombreDuenio}} {{apellidoDuenio}}</p>
+                </div>
+            </div>
+        </div>
+        <div class='d-flex w-50'>
+            <form class='form-register' method='post' enctype='multipart/form-data' action='/encontreMascota/conChapita/register' >
+                <div class='form-main-container-half'>
+                    {{> encontreMascota/formEncontreMascota.hbs this }}
+                </div>
+                <input type="number" name="idMascota" value={{idMascota}} style="display: none" />
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+<script>
+    var locationPicker = new locationPicker('map', {
+        setCurrentPosition: true,
+    }, {
+        zoom: 15
+    });
+
+    //console.log(locationPicker.getMarkerPosition());
+    google.maps.event.addListener(locationPicker.map, 'idle', (e) => {
+        let location = locationPicker.getMarkerPosition();
+        /*
+        Prototipo del objeto que esta en location
+
+        interface location {
+            lat: int;
+            lng: int;
+        }
+        */
+    });
+</script>
+
+</html>

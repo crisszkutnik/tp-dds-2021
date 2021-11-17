@@ -1,0 +1,19 @@
+<hr />
+{{#each contacto}}
+    {{#with contact}}
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <b style="font-size: 0.8rem;">Nombre completo</b><br/>
+                <span style="font-size: 0.6rem;">{{ nombre }} {{ apellido }}</span>
+            </li>
+            <li class="list-group-item">
+                <b style="font-size: 0.8rem;">Email</b><br/>
+                <span style="font-size: 0.6rem;">{{ email }}</span>
+            </li>
+            <li class="list-group-item">
+                <b style="font-size: 0.8rem;">Teléfono</b><br/>
+                <span style="font-size: 0.6rem;">{{ telefono }}</span>
+            </li>
+        </ul>
+    {{/with}}
+{{/each}}

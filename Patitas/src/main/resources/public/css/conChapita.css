@@ -1,0 +1,14 @@
+#imagenesMascota img {
+    width: 100%;
+    --h: 600px;
+    height: var(--h);
+    max-height: var(--h);
+}
+
+.carousel-inner {
+    border-radius: 10px;
+}
+
+#fixed-container {
+    width: 40%;
+}

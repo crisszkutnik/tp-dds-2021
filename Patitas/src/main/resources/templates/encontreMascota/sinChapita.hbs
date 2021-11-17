@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="/css/formStyles.css" rel="stylesheet" />
+    <title>Patitas al rescate</title>
+
+    <!-- js for location picker -->
+
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYEQSOHZgkSUu87TKHIhBsN4egdCJwkjo"></script>
+    <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+
+    <!-- js for forms -->
+    <script src="/js/defaultForm.js"></script>
+</head>
+
+<body>
+    {{> partials/nav.hbs this}}
+    <form class='form-register' method='post' enctype='multipart/form-data' action='/encontreMascota/sinChapita/register'>
+        <div class='form-main-container'>
+            {{> encontreMascota/formEncontreMascota.hbs this }}
+        </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+<script>
+    var locationPicker = new locationPicker('map', {
+        setCurrentPosition: true,
+    }, {
+        zoom: 15
+    });
+
+    //console.log(locationPicker.getMarkerPosition());
+    google.maps.event.addListener(locationPicker.map, 'idle', (e) => {
+        let location = locationPicker.getMarkerPosition();
+        /*
+        Prototipo del objeto que esta en location
+
+        interface location {
+            lat: int;
+            lng: int;
+        }
+        */
+    })
+</script>
+
+</html>

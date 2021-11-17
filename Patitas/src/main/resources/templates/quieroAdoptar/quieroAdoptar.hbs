@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="/css/quieroAdoptar.css" rel="stylesheet" />
+    <link href="/css/formStyles.css" rel="stylesheet" />
+    <script src="/js/defaultForm.js"></script>
+    <title>Patitas al rescate</title>
+</head>
+
+<body>
+    {{> partials/nav.hbs this}}
+    <div class='d-flex'>
+        <div class='d-flex w-25 bg-dark'>
+            <div class='d-flex w-25 h-100 position-fixed' id='adoptar-imagen'>
+                <div class='d-flex w-100 h-100 bg-dark bg-opacity-75 text-white justify-content-center align-items-center'>
+                    <div class='d-flex w-75 flex-column align-items-center'>
+                        <h1>Adoptar una mascota</h1>
+                        <hr />
+                        <p>
+                            ¿Estás buscando un nuevo integrante para tu hogar? Rellená el formulario y nos encargaremos
+                            de buscarte
+                            la mascota perfecta para vos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='d-flex flex-column w-75'>
+            <!-- Formulario -->
+            <form class='form-register ignore-default-form'>
+                <div class='form-main-container-half'>
+                    {{> partials/tituloFormularioCondicion.hbs
+                    text='Selecciona tus preferencias'
+                    isLogged=isLogged
+                    loggedVal=1
+                    notLoggedVal=1
+                    colourClass='form-title-red'
+                    }}
+                    <div class='d-flex w-100 flex-wrap alt-form-container justify-content-between'>
+                        <div class="form-floating mb-3">
+                            <select name="Tipo" class="form-select" id="floatingTipo"
+                                aria-label="Floating label select example">
+                                <option value="NINGUNO" selected>Ninguno</option>
+                                <option value="PERRO">Perro</option>
+                                <option value="GATO">Gato</option>
+                            </select>
+                            <label for="floatingTipo">Tipo</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select name="Sexo" class="form-select" id="floatingSexo"
+                                aria-label="Floating label select example">
+                                <option value="NINGUNO" selected>Ninguno</option>
+                                <option value="MACHO">Macho</option>
+                                <option value="HEMBRA">Hembra</option>
+                            </select>
+                            <label for="floatingSexo">Sexo</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select name="Patio" class="form-select" id="floatingPatio"
+                                aria-label="Floating label select example">
+                                <option disabled selected>Seleccione uno</option>
+                                <option value="true">Si</option>
+                                <option value="false">No</option>
+                            </select>
+                            <label for="floatingPatio">¿Tenés patio?</label>
+                        </div>
+                    </div>
+                </div>
+                <input type='submit' class='btn btn-primary mt-5 ignore-default-form' value="Buscar"/>
+            </form>
+
+            <!-- Mascotas encontradas -->
+            {{#if busqueda}}
+            <hr />
+            <div class="container mt-4 d-flex flex-wrap justify-content-around">
+                {{#if publicaciones}}
+                {{#each publicaciones}}
+                {{> quieroAdoptar/ofertaAdopcionCard.hbs
+                    id = id
+                    imgsrc = mascota.imagenes.[0].nombre
+                    nombre = mascota.nombre
+                    apodo = mascota.apodo
+                    fecha = fecha
+                    respuestas = respuestas
+                }}
+                {{/each}}
+                {{else}}
+                <div class="container justify-content-center">
+                    <h3>No hay publicaciones que coincidan con tu búsqueda 😥</h3>
+                </div>
+                {{/if}}
+            </div>
+            <hr />
+            <!-- Cartel de Sad -->
+            <div class="container">
+                <h2>¿No encontraste lo que buscabas?</h2>
+                <p>Registrá tu solicitud en la plataforma y te avisaremos si alguna mascota se ajusta a tus deseos 🐾</p>
+                <form method="post" class='form-register' action="/quieroAdoptar/registrarSolicitud">
+                    {{#with preferencias}}
+                        <div style="display: none">
+                            <input type="text" name="Patio" value={{tienePatio}} />
+                            <input type="text" name="Sexo" value={{#if sexo}}{{sexo}}{{else}}"NINGUNO"{{/if}} />
+                            <input type="text" name="Tipo" value={{#if tipoAnimal}}{{tipoAnimal}}{{else}}"NINGUNO"{{/if}} />
+                        </div>
+                    {{/with}}
+                    <div class='form-main-container-half'>
+                        <div id="contact-section-bootstrap" class="w-100">
+                        </div>
+                        <button type='button' id='add-contact-bootstrap' class='btn btn-primary'>Agregar contacto</button>
+                    </div>
+                    <input type="submit" class="btn btn-primary mt-2" value="¡Quiero adoptar!" />
+                </form>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

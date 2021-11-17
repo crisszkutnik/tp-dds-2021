@@ -1,0 +1,16 @@
+<div class="col d-flex justify-content-center">
+    <div class="card shadow-lg" style="width: 18rem;">
+        <img src="{{imgpath}}" class="card-img-top">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <h5 class="card-title">{{title}}</h5>
+            <p class="card-text">
+                {{text}}
+            </p>
+            {{#if btnhref}}
+            <div>
+                <a href="{{btnhref}}" class="btn w-100 align-self-end btn-primary">{{btnval}}</a>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+:root {
+    --alt-blue: #0c59ce;
+}
+
+.btn-alt {
+    background-color: var(--alt-blue);
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-alt:hover {
+    filter: brightness(85%);
+}
